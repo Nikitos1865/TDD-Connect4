@@ -1,9 +1,17 @@
 class Board 
     attr_accessor :board
 
-    def initialize 
-        @board = Array.new(4) {Array.new(4,"0")}
+    WINS = [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            ]
 
+    def initialize 
+        @board = Array.new(4) {Array.new(4," ")}
     end 
 
     def to_s
@@ -15,8 +23,20 @@ class Board
     end 
 
     def mark_board(num, char)
+        board[num].each_with_index do |n, i|
+            if n == ' ' && i <= 3
+                board[num][i] = char
+                break
+            end 
+            next
+        end 
+    end 
+
+    def check_win?
         
     end 
+
+
 
 end 
 
