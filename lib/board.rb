@@ -33,10 +33,17 @@ class Board
     end 
 
     def check_win?
-        
+        win = false
+        board.each do |val|
+            p val
+            if val.all?(val[0]) && val[0] != ' '
+                win = true
+            end 
+        end 
+
+        win
     end 
 
 
 
 end 
-

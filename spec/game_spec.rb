@@ -25,13 +25,29 @@ describe Board do
         end 
     end
     describe "#check_win?" do 
-        it "checks if the board has a win via 10 combinations" do 
+        it "checks if the board has a win via column combination" do 
             b = Board.new
             b.board[0][0] = 'o'
             b.board[0][1] = 'o'
             b.board[0][2] = 'o'
             b.board[0][3] = 'o'
             expect(b.check_win?).to eql(true)
+        end 
+        it "checks for a win correctly in a different column" do
+            b = Board.new
+            b.board[1][0] = 'o'
+            b.board[1][1] = 'o'
+            b.board[1][2] = 'o'
+            b.board[1][3] = 'o'
+            expect(b.check_win?).to eql(true)
+        end 
+        it "checks for an actual win, not just a filled column" do
+            b = Board.new
+            b.board[1][0] = 'o'
+            b.board[1][1] = 'x'
+            b.board[1][2] = 'o'
+            b.board[1][3] = 'o'
+            expect(b.check_win?).to eql(false)
         end 
     end 
     
