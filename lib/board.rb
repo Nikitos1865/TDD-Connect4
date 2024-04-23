@@ -1,15 +1,6 @@
 class Board 
     attr_accessor :board
 
-    WINS = [
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            ]
-
     def initialize 
         @board = Array.new(4) {Array.new(4," ")}
     end 
@@ -55,6 +46,16 @@ class Board
             win = true
         end 
         win
+    end 
+
+    def check_full?
+        full = true
+        board.each do |val|
+            if val.any?(" ")
+                full = false
+            end 
+        end
+        full
     end 
 
 

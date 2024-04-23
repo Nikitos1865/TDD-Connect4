@@ -86,8 +86,24 @@ describe Board do
     describe "#check_full?" do 
         it "checks if board is full" do 
             b = Board.new
-            
+            for n in 0..3 do 
+                for i in 0..3 do 
+                    b.board[n][i] = 'o'
+                end 
+            end
+            expect(b.check_full?).to eql(true)
         end
+        it "does not give false positives" do 
+            b = Board.new
+            for n in 0..3 do 
+                for i in 0..3 do 
+                    b.board[n][i] = 'o'
+                end 
+            end
+            b.board[0][3] = " "
+            puts b
+            expect(b.check_full?).to eql(false)
+        end 
     end 
 
     
