@@ -6,11 +6,13 @@ class Board
     end 
 
     def to_s
-        s1 = String.new("       #{board[0][3]} | #{board[1][3]} | #{board[2][3]} | #{board[3][3]}\n      ---------------")
-        s2 = String.new("       #{board[0][2]} | #{board[1][2]} | #{board[2][2]} | #{board[3][2]}\n      ---------------")
-        s3 = String.new("       #{board[0][1]} | #{board[1][1]} | #{board[2][1]} | #{board[3][1]}\n      ---------------")
-        s4 = String.new("       #{board[0][0]} | #{board[1][0]} | #{board[2][0]} | #{board[3][0]}\n")
-        "#{s1}\n#{s2}\n#{s3}\n#{s4}"
+        s0 = String.new("         1   2   3   4 \n\n")
+        s1 = String.new("       | #{board[0][3]} | #{board[1][3]} | #{board[2][3]} | #{board[3][3]} |\n       .---------------.")
+        s2 = String.new("       | #{board[0][2]} | #{board[1][2]} | #{board[2][2]} | #{board[3][2]} |\n       .---------------.")
+        s3 = String.new("       | #{board[0][1]} | #{board[1][1]} | #{board[2][1]} | #{board[3][1]} |\n       .---------------.")
+        s4 = String.new("       | #{board[0][0]} | #{board[1][0]} | #{board[2][0]} | #{board[3][0]} |\n")
+        s5 = String.new("      -------------------")
+        "#{s0}#{s1}\n#{s2}\n#{s3}\n#{s4}#{s5}"
     end 
 
     def mark_board(num, char)
@@ -58,6 +60,16 @@ class Board
         full
     end 
 
+    def example_board 
+        puts "Enter keys 1-4 to select the column in which to drop your piece"
+        puts self
+    end 
+
+    def clear_board 
+        @board = Array.new(4) {Array.new(4," ")}
+    end 
+
 
 
 end 
+

@@ -1,4 +1,5 @@
 require "./lib/board"
+require "./lib/player"
 
 describe Board do 
     describe "#mark_board" do 
@@ -101,11 +102,72 @@ describe Board do
                 end 
             end
             b.board[0][3] = " "
-            puts b
             expect(b.check_full?).to eql(false)
         end 
-    end 
+    end   
 
-    
-    
+    describe "#clear_board" do 
+        it "clears the board" do 
+            b = Board.new
+            for n in 0..3 do 
+                for i in 0..3 do 
+                    b.board[n][i] = 'x'
+                end 
+            end
+            b.clear_board
+            puts b
+            expect(b.board.all?([' ', ' ', ' ', ' '])).to eql(true)
+        end 
+    end 
+end 
+
+describe Player do 
+    describe "#move" do 
+        it "marks the board correctly according to char and column selected" do 
+            p = Player.new('o')
+            b = Board.new
+            p.move(b,0)
+            expect(b.board[0][0]).to eql('o')
+        end
+        
+        it "marks the board correctly according to char and column selected" do 
+            p = Player.new('o')
+            b = Board.new
+            p.move(b,2)
+            p.move(b,2)
+            expect(b.board[2][1]).to eql('o')
+        end 
+    end 
+    describe "#valid_move?" do 
+        it "correctly identifies an invalid move due to full column" do 
+            p = Player.new('o') 
+            b = Board.new 
+            b.board[1][0] = "o"
+            b.board[1][1] = "o"
+            b.board[1][2] = 'o'
+            b.board[1][3] = 'o'
+            puts b 
+            expect(p.valid_move?(b,1)).to eql(false)
+        end
+        it "correctly identifies an invalid move due non-integer move" do 
+            p = Player.new('o') 
+            b = Board.new 
+            b.board[1][0] = "o"
+            b.board[1][1] = "o"
+            b.board[1][2] = 'o'
+            b.board[1][3] = 'o'
+            puts b 
+            expect(p.valid_move?(b,"purple")).to eql(false)
+        end
+        it "correctly identifies an invalid move due too large of an integer" do 
+            p = Player.new('o') 
+            b = Board.new 
+            b.board[1][0] = "o"
+            b.board[1][1] = "o"
+            b.board[1][2] = 'o'
+            b.board[1][3] = 'o'
+            puts b 
+            expect(p.valid_move?(b,6)).to eql(false)
+        end
+    end
 end 
