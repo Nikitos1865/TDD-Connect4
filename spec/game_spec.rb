@@ -171,3 +171,10 @@ describe Player do
         end
     end
 end 
+
+describe Game do 
+    describe "#ask_to_play_again" do
+        it "verifies that returns true if player wants to play again" do
+        end 
+    end 
+end 
